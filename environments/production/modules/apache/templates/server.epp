@@ -1,0 +1,7 @@
+<%- | $apache_name,
+| -%>
+
+<VirtualHost *:80>
+    ServerName www.<%= $apache_name %>.com
+    
+</VirtualHost>
