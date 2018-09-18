@@ -1,0 +1,3 @@
+[Zabbix]
+baseurl=<%= @baseurl %>
+gpgkey=<%= @gpgkey %>

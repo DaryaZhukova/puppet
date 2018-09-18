@@ -30,17 +30,21 @@ node default {
   #   class { 'my_class': }
 }
 node 'puppetnode1.epam.com' {
-  include apache
+
   class { '::mysql::server':
     root_password           => 'strongpassword',
     remove_default_accounts => true,
     }
-  mysql::db { 'test_mdb': 
-    user     => 'test_user',
-    password => 'test_pass',
+  mysql::db { 'zabbix': 
+    user     => 'zabbix',
+    password => 'zabbix',
     host     => 'localhost',
-    grant    => ['SELECT', 'UPDATE'],
+    sql => '/usr/share/doc/zabbix-server-mysql-3.2.11/create.sql.gz',
+    import_cat_cmd => 'zcat',
+    grant    => ['ALL'],
   }
+  include zabbix
+  include zabbix_agent
 }
 
 node 'puppetnode2.epam.com' {
